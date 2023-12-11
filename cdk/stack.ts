@@ -55,12 +55,6 @@ export class AppStack extends Stack {
       },
       region: envProps.region,
       ...contextProps,
-      defaultCorsPreflightOptions: {
-        allowHeaders: ['Content-Type', 'X-Amz-Date', 'Authorization', 'X-Api-Key'],
-        allowMethods: ['OPTIONS', 'GET', 'POST', 'PUT', 'PATCH', 'DELETE'],
-        allowCredentials: true,
-        allowOrigins: ['*'],
-      },
     } as ApiGatewayProps);
 
     this.recommendationLambdaFunction.lambdaFunction.addInvokePermissions(
