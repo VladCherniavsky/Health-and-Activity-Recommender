@@ -38,5 +38,5 @@
     "@typescript-eslint/quotes": ["error", "single"],
     "@typescript-eslint/no-namespace": "off"
   },
-  "ignorePatterns": ["*.config.js", ".env*", "apigee/**/*.js"]
+  "ignorePatterns": ["*.config.js", ".env*"]
 }
