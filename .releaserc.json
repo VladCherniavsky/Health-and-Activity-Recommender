@@ -1,6 +1,9 @@
 {
   "tagFormat":"${version}",
-  "branches": ["master"],
+  "branches": ["main"],
+  "release": {
+    "branches": ["main"]
+  },
   "repositoryUrl": "https://github.com/VladCherniavsky/Health-and-Activity-Recommender.git",
   "plugins": [
     ["@semantic-release/commit-analyzer", {
@@ -14,6 +17,7 @@
     "@semantic-release/release-notes-generator",
     "@semantic-release/changelog",
     "@semantic-release/npm",
+    "@semantic-release/github",
     ["@semantic-release/git", {
       "message": "chore(release): ${nextRelease.version}\n\n${nextRelease.notes}",
       "assets": ["CHANGELOG.md", "package.json", "package-lock.json", "README.md"]
