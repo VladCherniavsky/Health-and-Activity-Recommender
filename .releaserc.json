@@ -1,6 +1,6 @@
 {
   "tagFormat":"${version}",
-  "branches": ["main"],
+  "branches": ["master"],
   "repositoryUrl": "https://github.com/VladCherniavsky/Health-and-Activity-Recommender.git",
   "plugins": [
     ["@semantic-release/commit-analyzer", {
