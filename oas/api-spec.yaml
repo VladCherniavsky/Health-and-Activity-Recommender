@@ -1,0 +1,119 @@
+openapi: 3.0.3
+info:
+  title: Health and Activity Recommender
+  description: The API  for Recommender  service
+    have to be used for creating any other APIs.
+  contact:
+    name: Uladzislau Charniauski
+  version: 1.0.0
+servers:
+- url: https://fq96n8p0f6.execute-api.us-east-1.amazonaws.com/dev/recommendation
+tags:
+- name: recommendation
+  description: Recommendation service
+paths:
+  /recommendation:
+    post:
+      summary: Getting recommendations and tips
+      description: This is an endpoint for getting recommendations and tips
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PostRecommendationBody'
+            examples:
+              example1:
+                value:
+                  height:
+                    value: 175.5
+                    unit: cm
+                  weight:
+                    value: 70.2
+                    unit: kg
+                  birthDate: 1641216000  # Example Unix timestamp (GMT: Friday, January 7, 2022 12:00:00 AM)
+      operationId: recommendationAndTips
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RecommendationsResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BadRequestResponse'
+              example:
+                errors: [ "height.unit is a required field" ]
+                message: "Invalid data"
+        '500':
+          description: Internal Server Error
+      x-amazon-apigateway-integration:
+        httpMethod: POST
+        type: aws_proxy
+        uri: arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/<%= recommendationLambdaArn %>/invocations
+components:
+  schemas:
+    PostRecommendationBody:
+      type: object
+      properties:
+        height:
+          type: object
+          properties:
+            value:
+              type: number
+              format: float
+            unit:
+              type: string
+              enum: [ cm, pound ]  # Allow only "cm" or "pound"
+        weight:
+          type: object
+          properties:
+            value:
+              type: number
+              format: double
+            unit:
+              type: string
+              enum: [ kg, feet ]  # Allow only "kg" or "feet"
+        birthDate:
+          type: integer
+          format: int64  # Use int64 format for Unix timestamps
+    RecommendationsResponse:
+      type: object
+      properties:
+          data:
+            type: array
+            items:
+              type: object
+              properties:
+                title:
+                  type: string
+                details:
+                  type: string
+                  nullable: true
+                priority:
+                  type: number
+                  format: float
+          errors:
+            type: array
+            items:
+              type: object
+              properties:
+                serviceName:
+                  type: string
+                errorCode:
+                  type: integer
+                errorMessage:
+                  type: string
+    BadRequestResponse:
+      type: object
+      properties:
+        errors:
+          type: array
+          items:
+            type: string
+        message:
+          type: string

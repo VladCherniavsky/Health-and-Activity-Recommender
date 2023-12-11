@@ -1,0 +1,49 @@
+{
+  "app": "npx ts-node --prefer-ts-exts cdk/app.ts",
+  "context": {
+    "props": {
+      "serviceName": "recommendation-service",
+      "serviceVersion": "v1",
+      "apiOasPath": "oas/api-spec.yaml",
+      "apiTracingEnabled": false,
+      "useNodejsFunction": true,
+      "useParameterStore": true,
+      "lambdaRuntime": "nodejs18.x",
+      "lambdaFunctionEnvVars": {
+        "LOCAL": "false"
+      },
+      "dev": {
+        "us-east-1": {}
+      },
+      "qa": {
+        "us-east-1": {}
+      },
+      "uat": {
+        "us-east-1": {}
+      },
+      "prod": {
+        "us-east-1": {}
+      },
+      "apiAccessLogFormat": "{\"requestId\":\"$context.requestId\",\"apiId\":\"$context.apiId\",\"principalId\":\"$context.authorizer.principalId\",\"httpMethod\":\"$context.httpMethod\",\"errorMessage\":\"$context.error.message\",\"errorResponseType\":\"$context.error.responseType\",\"errorValidationErrorString\":\"$context.error.validationErrorString\",\"extendedRequestId\":\"$context.extendedRequestId\",\"identityAccountId\":\"$context.identity.accountId\",\"identityApiKey\":\"$context.identity.apiKey\",\"identityApiKeyId\":\"$context.identity.apiKeyId\",\"identityCaller\":\"$context.identity.caller\",\"identityCognitoAuthenticationProvider\":\"$context.identity.cognitoAuthenticationProvider\",\"identityCognitoAuthenticationType\":\"$context.identity.cognitoAuthenticationType\",\"identityCognitoIdentityId\":\"$context.identity.cognitoIdentityId\",\"identityCognitoIdentityPoolId\":\"$context.identity.cognitoIdentityPoolId\",\"identitySourceIp\":\"$context.identity.sourceIp\",\"identityUser\":\"$context.identity.user\",\"identityUserAgent\":\"$context.identity.userAgent\",\"identityUserArn\":\"$context.identity.userArn\",\"integrationLatency\":\"$context.integrationLatency\",\"path\":\"$context.path\",\"protocol\":\"$context.protocol\",\"requestTime\":\"$context.requestTime\",\"resourceId\":\"$context.resourceId\",\"resourcePath\":\"$context.resourcePath\",\"responseLength\":\"$context.responseLength\",\"responseLatency\":\"$context.responseLatency\",\"status\":\"$context.status\",\"stage\":\"$context.stage\",\"wafResponseCode\":\"$context.wafResponseCode\",\"webaclArn\":\"$context.webaclArn\"}"
+    },
+    "@aws-cdk/core:bootstrapQualifier": "recommenderApp",
+    "@aws-cdk/aws-lambda:recognizeLayerVersion": true,
+    "@aws-cdk/core:checkSecretUsage": true,
+    "@aws-cdk/core:target-partitions": [
+      "aws"
+    ],
+    "@aws-cdk/aws-iam:minimizePolicies": true,
+    "@aws-cdk/core:validateSnapshotRemovalPolicy": true,
+    "@aws-cdk/aws-apigateway:disableCloudWatchRole": true,
+    "@aws-cdk/core:enablePartitionLiterals": true,
+    "@aws-cdk/aws-iam:standardizedServicePrincipals": true,
+    "@aws-cdk/aws-iam:importedRoleStackSafeDefaultPolicyName": true,
+    "@aws-cdk/aws-s3:serverAccessLogsUseBucketPolicy": true,
+    "@aws-cdk/customresources:installLatestAwsSdkDefault": false,
+    "@aws-cdk/aws-apigateway:authorizerChangeDeploymentLogicalId": true,
+    "@aws-cdk/aws-secretsmanager:useAttachedSecretResourcePolicyForSecretTargetAttachments": true,
+    "@aws-cdk/aws-apigateway:requestValidatorUniqueId": true,
+    "@aws-cdk/aws-kms:aliasNameRef": true,
+    "@aws-cdk/core:includePrefixInUniqueNameGeneration": true
+  }
+}

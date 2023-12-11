@@ -1,0 +1,6 @@
+{
+  "**/*.js": ["npm run prettier", "npm run lint"],
+  "**/*.ts": ["npm run prettier", "npm run lint"],
+  "./oas/**/*.{json,yml,yaml}": ["npm run lint:oas"],
+  "**/*.md": ["npm run prettier"]
+}

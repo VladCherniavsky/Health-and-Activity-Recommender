@@ -1,0 +1,12 @@
+node_modules
+build
+outputs
+config
+.scannerwork
+reports
+.nyc_output
+dist
+bin
+jest.config.js
+coverage
+cdk.out
